@@ -1,6 +1,7 @@
 package ru.netology.servlet;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import ru.netology.config.JavaConfig;
 import ru.netology.controller.PostController;
 import ru.netology.exception.NotFoundException;
 
@@ -9,16 +10,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class MainServlet extends HttpServlet {
-    private PostController controller;
     private final static String GET = "GET";
     private final static String POST = "POST";
     private final static String DELETE = "DELETE";
     private final static String PATH = "/api/posts";
     private final static String SEPARATOR = "/";
 
+    private PostController controller;
+
     @Override
     public void init() {
-        final var context = new AnnotationConfigApplicationContext("ru.netology");
+        final var context = new AnnotationConfigApplicationContext(JavaConfig.class);
         controller = context.getBean(PostController.class);
     }
 
