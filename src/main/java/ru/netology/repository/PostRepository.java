@@ -16,7 +16,7 @@ public class PostRepository {
     private final AtomicInteger postsCounter = new AtomicInteger(0);
 
     public List<Post> all() {
-        return (List<Post>) posts.values();
+        return new ArrayList<>(posts.values());
     }
 
     public Optional<Post> getById(long id) {
